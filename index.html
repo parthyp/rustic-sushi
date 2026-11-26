@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rustic 66 Sushi &amp; Grill</title>
+<meta name="description" content="Rustic 66 Sushi &amp; Grill: fresh sushi, poke and a grill menu on Historic Route 66 in Williams, Arizona. Est. 2026.">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Bitter:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Brand taken from the Rustic 66 logo: warm black, cream-gold lettering, rust rings, snow-white peaks. */
+:root{color-scheme:light dark;
+--black:#120c07;--black2:#1d150e;--gold:#cbbe8f;--gold2:#e4d8ad;--rust:#793d21;--copper:#c9763f;--snow:#fbf8f2;
+--bg:light-dark(#f6f0e3,#16100b);--ink:light-dark(#1d150e,#f1ead8);--mute:light-dark(#5e5245,#b4a895);
+--card:light-dark(#fffaf0,#211810);--line:light-dark(#ddd1ba,#3a2c1f);--head:light-dark(#5a2c16,#cbbe8f)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Work Sans",system-ui,sans-serif;overflow-x:clip}
+html{scroll-padding-top:76px;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+h1,h2,h3{line-height:1.05;text-wrap:balance;margin:0}
+h1,h2{font-family:Rye,Georgia,serif;font-weight:400;letter-spacing:.01em}
+h2{font-size:clamp(30px,4.2vw,46px);color:var(--head)}
+h3{font-family:Bitter,Georgia,serif;font-size:20px}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto}
+.band{padding:clamp(44px,6vw,92px) max(5vw,16px)}
+.eyebrow{font:600 13px "Work Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--copper);margin:0 0 10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;font:600 16px "Work Sans",sans-serif;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn.primary{background:var(--gold);color:var(--black)}.btn.primary:hover{background:var(--gold2)}
+.btn.ghost{border-color:rgba(203,190,143,.6);color:var(--gold2);background:transparent}.btn.ghost:hover{background:rgba(203,190,143,.12)}
+:focus-visible{outline:3px solid var(--copper);outline-offset:3px}
+/* rope-ring divider like the logo's double border */
+.rings{height:10px;border-top:3px solid var(--rust);border-bottom:3px solid var(--rust);opacity:.9}
+/* nav */
+header{position:sticky;top:0;z-index:10;background:var(--black);color:var(--gold2);border-bottom:3px solid var(--rust)}
+.nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:8px max(5vw,16px);max-width:1200px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-inline-end:auto}
+.brand img{width:58px;height:auto;display:block}
+.brand span{font:20px Rye,serif;color:var(--gold);line-height:1}
+.brand small{display:block;font:600 11px "Work Sans",sans-serif;letter-spacing:.2em;color:#cfc6b2;margin-top:4px}
+.nav nav{display:flex;flex-wrap:wrap;gap:4px 20px}.nav nav a{text-decoration:none;color:#e8e0cc;padding:10px 0}.nav nav a:hover{color:var(--gold)}
+.nav .btn{min-height:44px;padding:0 20px}
+/* hero */
+.hero{position:relative;background:radial-gradient(120% 90% at 70% 30%,#2a1c10 0%,var(--black) 60%);color:#efe7d2;padding-bottom:0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(46px,6.6vw,82px);color:var(--gold);line-height:.98}
+.hero h1 em{display:block;font-style:normal;font-size:.42em;color:var(--snow);letter-spacing:.14em;margin-top:14px;font-family:Bitter,serif;font-weight:700}
+.hero p.lede{font-size:18px;max-width:38ch;color:#d9d0bc;margin:22px 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.today{margin-top:26px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:15px;color:#cfc6b2}
+.today b{color:#fff}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#7ad19a;margin-inline-end:6px}
+.dot.closed{background:var(--copper)}
+.badge{width:min(100%,500px);justify-self:center;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6))}
+.badge img{width:100%;height:auto;display:block}
+.ridge{display:block;width:calc(100% + 2*max(5vw,16px));margin-inline:calc(-1*max(5vw,16px));height:clamp(70px,10vw,140px);margin-top:clamp(24px,4vw,48px)}
+/* menu */
+.menuhead{margin-bottom:24px}
+.menuhead p{margin:10px 0 0;color:var(--mute);max-width:56ch}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:24px}
+.tabs button{flex:none;min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:500 15px "Work Sans",sans-serif;cursor:pointer}
+.tabs button:hover{border-color:var(--copper)}
+.tabs button[aria-selected=true]{background:var(--rust);border-color:var(--rust);color:#fbf1e2}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:2px 40px}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;padding:16px 0;border-bottom:1px dashed var(--line)}
+.item h3{font-size:18px}.item .price{font:700 18px Bitter,serif;white-space:nowrap;text-align:right;color:var(--head)}
+.item p{grid-column:1/-1;margin:0;color:var(--mute);font-size:15px}
+.tag{display:inline-block;font:600 12px "Work Sans",sans-serif;padding:2px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:3px;background:light-dark(#f1dfc9,#3a2516);color:light-dark(#793d21,#e5a87c)}
+.note{margin-top:22px;font-size:13px;color:var(--mute)}
+/* story */
+.story{background:var(--rust);color:#fbf1e2;position:relative}
+.story h2{color:var(--gold2)}
+.story .eyebrow{color:#f0c9a4}
+.story .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:start}
+.story p{font-size:17px;max-width:60ch;margin:0 0 14px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fact{background:rgba(0,0,0,.22);border:1px solid rgba(228,216,173,.25);border-radius:16px;padding:18px}
+.fact b{display:block;font:700 22px Bitter,serif;margin-bottom:4px;color:var(--gold2)}.fact span{font-size:15px;opacity:.92}
+/* visit */
+.visit .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px)}
+.hours{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:16px}
+.hours td{padding:9px 0;border-bottom:1px solid var(--line)}.hours td:last-child{text-align:right;white-space:nowrap}
+.hours tr.now td{font-weight:600;color:var(--head)}
+.contact p{margin:4px 0}.contact .label{font-size:13px;color:var(--mute);margin-top:14px;letter-spacing:.06em;text-transform:uppercase}
+form{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--rust);border-radius:22px;padding:clamp(20px,3vw,32px);display:grid;gap:16px}
+form h3{font:400 26px Rye,serif;color:var(--head)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:grid;gap:6px;font-weight:500;font-size:15px}
+input,select,textarea{font:16px "Work Sans",sans-serif;min-height:48px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+textarea{min-height:90px;resize:vertical}
+.err{color:light-dark(#b3261e,#ff9a8f);font-size:14px;min-height:1em}
+.done{border-radius:16px;padding:18px;background:light-dark(#efe5cf,#2a1f14);display:none}
+.done.show{display:block}.done p{margin:0 0 10px}
+.done .btn{border-color:currentColor;color:inherit}
+footer{background:var(--black);color:#cfc6b2;font-size:15px;border-top:3px solid var(--rust)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+footer img{width:96px;height:auto;display:block}
+footer .fb{display:inline-flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;min-height:44px}
+footer .fb:hover{color:var(--gold2)}
+@media(max-width:860px){.hero .wrap,.story .wrap,.visit .wrap{grid-template-columns:minmax(0,1fr)}.badge{width:min(80%,380px);order:-1}}
+@media(max-width:600px){.nav nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}.nav nav a{flex:none}.row,.facts{grid-template-columns:minmax(0,1fr)}.hero p.lede{font-size:17px}.brand small{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="#top"><img src="assets/logo.png" alt="" width="58" height="48"><span>Rustic 66<small>SUSHI &amp; GRILL</small></span></a>
+    <nav aria-label="Main">
+      <a href="#menu">Menu</a><a href="#story">Our story</a><a href="#visit">Hours &amp; location</a>
+    </nav>
+    <a class="btn primary" href="#reserve">Reserve</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero band">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Williams, Arizona · Est. 2026</p>
+      <h1>Rustic 66<em>SUSHI &amp; GRILL</em></h1>
+      <p class="lede">Fresh rolls, nigiri and poke bowls on Historic Route 66, plus a grill menu for anyone who’d rather have a burger or a steak.</p>
+      <div class="cta">
+        <a class="btn primary" href="#menu">See the menu</a>
+        <a class="btn ghost" href="#reserve">Book a table</a>
+      </div>
+      <div class="today" id="today"></div>
+    </div>
+    <div class="badge"><img src="assets/logo.png" alt="Rustic 66 Sushi &amp; Grill logo: snow-capped mountains above the name, established 2026" width="593" height="495"></div>
+  </div>
+  <svg class="ridge" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 140 V96 L90 60 L160 84 L260 22 L330 70 L380 52 L470 98 L560 40 L640 76 L720 12 L800 64 L860 46 L960 92 L1050 34 L1130 74 L1200 56 V140Z" fill="#2b1f15"/>
+    <path d="M260 22 L240 40 L256 38 L262 48 L276 34 L292 44 Z M720 12 L700 32 L716 30 L724 40 L738 26 L756 36 Z M1050 34 L1034 50 L1048 48 L1054 56 L1066 46 L1080 54 Z" fill="#fbf8f2" opacity=".9"/>
+    <path d="M0 140 V118 C200 100 400 124 600 110 S1000 104 1200 118 V140Z" fill="var(--bg)"/>
+  </svg>
+</section>
+
+<section class="band" id="menu" aria-labelledby="menu-h">
+  <div class="wrap">
+    <div class="menuhead">
+      <p class="eyebrow">Sushi &amp; grill</p>
+      <h2 id="menu-h">The menu</h2>
+      <p>Rolled and sliced to order, grilled to order. Gluten-free soy and soy-paper wraps on request.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Menu sections" id="tabs"></div>
+    <div class="grid" id="items" role="tabpanel" aria-labelledby="menu-h"></div>
+    <p class="note">Sample menu, prices, hours and contact details shown. Replace with the real ones before launch. Consuming raw or undercooked fish may increase your risk of foodborne illness.</p>
+  </div>
+</section>
+
+<section class="story band" id="story" aria-labelledby="story-h">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Our story</p>
+      <h2 id="story-h" style="margin-bottom:20px">Sushi at the Gateway to the Grand Canyon</h2>
+      <p>For years, a sushi night in Williams meant a drive to Flagstaff. Rustic 66 changes that, bringing a proper sushi bar to the steakhouses and diners of downtown Route 66.</p>
+      <p>The room is casual and wood-warm, the kind of place where a family off the Grand Canyon Railway, a couple on date night and a table of locals all feel at home. Sushi fans get fresh rolls, nigiri, sashimi and poke; everyone else gets burgers, steaks, salads and a kids’ menu.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><b>Route 66</b><span>Right in historic downtown Williams</span></div>
+      <div class="fact"><b>Sushi + grill</b><span>Something for every appetite at the table</span></div>
+      <div class="fact"><b>Family friendly</b><span>Kids’ menu and room for groups</span></div>
+      <div class="fact"><b>Est. 2026</b><span>About an hour from the Grand Canyon’s South Rim</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="visit band" id="visit" aria-labelledby="visit-h">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Come on in</p>
+      <h2 id="visit-h">Hours &amp; location</h2>
+      <table class="hours"><tbody id="hours"></tbody></table>
+      <div class="contact">
+        <p class="label">Address</p><p>Historic Route 66, Downtown Williams, AZ 86046</p>
+        <p class="label">Phone</p><p><a href="tel:+19285550166">(928) 555-0166</a></p>
+        <p class="label">Getting here</p><p>Exit 161 or 163 off I-40, then follow Route 66 into downtown. Street parking along Railroad Ave and Route 66.</p>
+        <p class="label">Follow us</p><p><a href="https://www.facebook.com/profile.php?id=61584781262025" target="_blank" rel="noopener">Rustic 66 on Facebook</a></p>
+      </div>
+    </div>
+    <div id="reserve">
+      <form id="form" novalidate>
+        <h3>Request a table</h3>
+        <div class="row">
+          <label>Name<input id="f-name" autocomplete="name" required></label>
+          <label>Phone<input id="f-phone" type="tel" autocomplete="tel" required></label>
+        </div>
+        <div class="row">
+          <label>Date<input id="f-date" type="date" required></label>
+          <label>Time<select id="f-time"></select></label>
+        </div>
+        <label>Party size<select id="f-size"></select></label>
+        <label>Notes <textarea id="f-notes" placeholder="Allergies, high chair, birthday…"></textarea></label>
+        <div class="err" id="f-err" role="alert"></div>
+        <button class="btn primary" type="submit">Send request</button>
+        <div class="done" id="done" aria-live="polite">
+          <p id="done-txt"></p>
+          <button type="button" class="btn" id="copy">Copy details</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="band" style="padding-block:28px">
+  <div class="wrap">
+    <img src="assets/logo.png" alt="Rustic 66 Sushi &amp; Grill" width="96" height="80">
+    <span>Williams, Arizona · On Historic Route 66 · Est. 2026</span>
+    <a class="fb" href="https://www.facebook.com/profile.php?id=61584781262025" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg>
+      Follow us on Facebook</a>
+  </div>
+</footer>
+
+<script>
+{
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const menu={
+ "Signature rolls":[
+  ["Rustic 66 Roll","Shrimp tempura, avocado, cucumber, topped with seared salmon and spicy mayo","16","House favorite"],
+  ["Ponderosa Roll","Spicy tuna, jalapeño, cilantro, topped with yellowtail and ponzu","17",""],
+  ["Grand Canyon Roll","Crab, cream cheese, tempura-fried whole, eel sauce and sesame","15",""],
+  ["Snowcap Roll","Crab and cucumber, topped with white tuna, spicy mayo and tempura flakes","16",""],
+  ["Dragon Roll","Eel and cucumber inside, avocado scales, eel sauce","16",""],
+  ["Veggie Trail Roll","Asparagus, avocado, cucumber, pickled radish, soy paper","11","Vegetarian"]],
+ "Classic rolls":[
+  ["California Roll","Crab, avocado, cucumber","9",""],["Spicy Tuna Roll","Tuna, spicy mayo, scallion","10",""],
+  ["Philadelphia Roll","Smoked salmon, cream cheese, cucumber","10",""],["Shrimp Tempura Roll","Crispy shrimp, avocado, eel sauce","11",""],
+  ["Salmon Avocado Roll","Fresh salmon and avocado","10",""],["Cucumber Roll","Simple and crisp","6","Vegetarian"]],
+ "Nigiri & sashimi":[
+  ["Salmon","Nigiri (2 pc) or sashimi (5 pc)","7 / 13",""],["Tuna","Nigiri (2 pc) or sashimi (5 pc)","8 / 14",""],
+  ["Yellowtail","Nigiri (2 pc) or sashimi (5 pc)","8 / 14",""],["Freshwater eel","Nigiri (2 pc), eel sauce","8",""],
+  ["Chef’s sashimi plate","15 pieces of the day’s best fish","32","Chef’s choice"],["Nigiri sampler","8 pieces, chef’s selection, with a California roll","28",""]],
+ "Poke bowls":[
+  ["Classic Ahi Poke","Tuna, shoyu, sweet onion, seaweed salad, sushi rice","17",""],
+  ["Spicy Salmon Poke","Salmon, spicy mayo, edamame, cucumber, crispy onion","17",""],
+  ["Build your own","Choose a base, a protein, three toppings and a sauce","16",""],
+  ["Tofu Poke","Marinated tofu, avocado, mango, sesame ginger","14","Vegetarian"]],
+ "From the grill":[
+  ["Rustic Burger","Half-pound beef, cheddar, lettuce, tomato, fries","15",""],
+  ["Teriyaki Burger","Grilled pineapple, teriyaki glaze, Swiss, fries","16",""],
+  ["Ribeye Steak","12 oz, garlic butter, rice or fries, vegetables","32",""],
+  ["Chicken Teriyaki","Grilled thigh, steamed rice, vegetables","18",""],
+  ["House Salad","Greens, cucumber, carrot, ginger dressing","8","Vegetarian"],
+  ["Edamame","Steamed, sea salt","6","Vegetarian"]],
+ "Kids & dessert":[
+  ["Kids’ burger","With fries and a drink","9",""],["Kids’ chicken & rice","Teriyaki chicken, rice","9",""],
+  ["Kids’ California roll","With a drink","8",""],["Mochi ice cream","Three pieces, rotating flavors","7",""],
+  ["Tempura cheesecake","Crispy-fried, berry sauce","9",""]]
+};
+const tabs=document.getElementById('tabs'),items=document.getElementById('items');
+const names=Object.keys(menu);
+tabs.innerHTML=names.map((n,i)=>`<button role="tab" id="tab-${i}" aria-selected="${i===0}">${esc(n)}</button>`).join('');
+const show=i=>{
+  [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+  items.innerHTML=menu[names[i]].map(([n,d,p,t])=>`<div class="item"><h3>${esc(n)}${t?`<span class="tag">${esc(t)}</span>`:''}</h3><span class="price">$${esc(p)}</span><p>${esc(d)}</p></div>`).join('');
+};
+tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show([...tabs.children].indexOf(b))});
+tabs.addEventListener('keydown',e=>{const cur=[...tabs.children].findIndex(b=>b.getAttribute('aria-selected')==='true');
+  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const n=(cur+(e.key==='ArrowRight'?1:-1)+names.length)%names.length;show(n);tabs.children[n].focus();tabs.children[n].scrollIntoView({block:'nearest',inline:'nearest'})}});
+show(0);
+
+// hours: [day, open hour, close hour] (24h); null = closed
+const hours=[["Sunday",12,20],["Monday",null],["Tuesday",16,21],["Wednesday",16,21],["Thursday",16,21],["Friday",12,22],["Saturday",12,22]];
+const fmt=h=>{const ap=h>=12?'pm':'am';const x=h%12||12;return x+' '+ap};
+const now=new Date(),d=now.getDay(),hr=now.getHours()+now.getMinutes()/60;
+const order=[1,2,3,4,5,6,0];
+document.getElementById('hours').innerHTML=order.map(i=>{const [n,o,c]=hours[i];return `<tr class="${i===d?'now':''}"><td>${n}${i===d?' (today)':''}</td><td>${o==null?'Closed':fmt(o)+' – '+fmt(c)}</td></tr>`}).join('');
+const [,o,c]=hours[d];const open=o!=null&&hr>=o&&hr<c;
+document.getElementById('today').innerHTML=`<span><span class="dot ${open?'':'closed'}"></span><b>${open?'Open now':'Closed now'}</b></span><span>Today: ${o==null?'closed':fmt(o)+' – '+fmt(c)}</span><span>Downtown Williams, Route 66</span>`;
+
+// reservation form
+const time=document.getElementById('f-time'),size=document.getElementById('f-size'),date=document.getElementById('f-date');
+const slots=[];for(let h=12;h<=21;h+=.5)slots.push(h);
+time.innerHTML=slots.map(h=>{const m=h%1?'30':'00';const x=Math.floor(h)%12||12;return `<option>${x}:${m} ${h>=12?'pm':'am'}</option>`}).join('');
+time.value='6:00 pm';
+size.innerHTML=Array.from({length:12},(_,i)=>`<option value="${i+1}">${i+1} ${i?'guests':'guest'}</option>`).join('')+'<option value="13+">13+ (we’ll call you)</option>';
+size.value='2';
+const iso=x=>`${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`;date.min=iso(now);date.value=iso(now);
+try{const s=JSON.parse(localStorage.getItem('rs-res')||'{}');if(s.name)document.getElementById('f-name').value=s.name;if(s.phone)document.getElementById('f-phone').value=s.phone}catch(e){}
+let summary='';
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('f-name').value.trim(),phone=document.getElementById('f-phone').value.trim(),err=document.getElementById('f-err');
+  if(!name||!phone||!date.value){err.textContent='Please add your name, phone and a date.';return}
+  const day=new Date(date.value+'T12:00').getDay();
+  if(hours[day][1]==null){err.textContent='We’re closed on '+hours[day][0]+'s. Please pick another day.';return}
+  err.textContent='';
+  try{localStorage.setItem('rs-res',JSON.stringify({name,phone}))}catch(e){}
+  const notes=document.getElementById('f-notes').value.trim();
+  summary=`Table request: ${name}, ${phone}. ${size.options[size.selectedIndex].text} on ${date.value} at ${time.value}.${notes?' Notes: '+notes:''}`;
+  document.getElementById('done-txt').textContent=`Thanks, ${name}! Your request for ${size.options[size.selectedIndex].text} on ${date.value} at ${time.value} is ready. We’ll call ${phone} to confirm, or ring us at (928) 555-0166.`;
+  document.getElementById('done').classList.add('show');
+});
+document.getElementById('copy').addEventListener('click',async e=>{try{await navigator.clipboard.writeText(summary);e.target.textContent='Copied'}catch(x){e.target.textContent='Copy not available'}});
+}
+</script>
+</body>
+</html>
