@@ -94,6 +94,32 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;
 footer img{width:96px;height:auto;display:block}
 @media(max-width:860px){.hero .wrap,.story .wrap,.visit .wrap{grid-template-columns:minmax(0,1fr)}.badge{display:none}}
 @media(max-width:600px){.nav nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}.nav nav a{flex:none}.facts{grid-template-columns:minmax(0,1fr)}.hero p.lede{font-size:17px}.brand small{display:none}}
+/* sushi conveyor */
+.belt{padding:clamp(8px,2vw,20px) 0 clamp(20px,3vw,36px);overflow:hidden}
+.belt-head{max-width:1200px;margin:0 auto 14px;padding:0 max(5vw,16px);display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.belt-head p{margin:0;font:400 clamp(20px,2.4vw,26px) Rye,serif;color:var(--head)}
+.belt-head a{color:var(--copper);font-weight:600;text-decoration:none}.belt-head a:hover{text-decoration:underline}
+.track{position:relative;background:linear-gradient(#2b1f15,#1d150e);border-block:4px solid var(--rust);padding:14px 0 10px;box-shadow:inset 0 10px 18px -10px rgba(0,0,0,.7),inset 0 -10px 18px -10px rgba(0,0,0,.7)}
+.track::before{content:"";position:absolute;inset:auto 0 6px;height:2px;background:repeating-linear-gradient(90deg,rgba(203,190,143,.35) 0 18px,transparent 18px 36px);animation:slats 3s linear infinite}
+.lane{display:flex;width:max-content;animation:belt 48s linear infinite}
+.track:hover .lane{animation-play-state:paused}
+.plate{flex:none;width:clamp(150px,18vw,190px);margin-inline-end:clamp(18px,3vw,36px);text-align:center}
+.plate svg{display:block;width:100%;height:auto;overflow:visible}
+.plate .food{animation:bob 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center bottom}
+.plate:nth-child(3n+2) .food{animation-delay:-1.1s}.plate:nth-child(3n) .food{animation-delay:-2.2s}
+.plate span{display:block;margin-top:2px;font:600 13px "Work Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#e4d8ad}
+.glint{animation:glint 3.6s ease-in-out infinite}
+.plate:nth-child(2n) .glint{animation-delay:-1.8s}
+@keyframes belt{to{transform:translateX(-50%)}}
+@keyframes slats{to{background-position:36px 0}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes glint{0%,100%{opacity:.15}45%{opacity:.85}}
+/* scroll reveal + menu stagger */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+.item{animation:rise .45s ease both;animation-delay:calc(var(--i,0) * 45ms)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}}
+@media(prefers-reduced-motion:reduce){.lane,.track::before,.plate .food,.glint,.item{animation:none}.js .reveal{opacity:1;transform:none;transition:none}.lane{flex-wrap:wrap;width:auto;justify-content:center}.lane .dup{display:none}}
 </style>
 </head>
 <body>
@@ -127,6 +153,29 @@ footer img{width:96px;height:auto;display:block}
     <path d="M260 22 L240 40 L256 38 L262 48 L276 34 L292 44 Z M720 12 L700 32 L716 30 L724 40 L738 26 L756 36 Z M1050 34 L1034 50 L1048 48 L1054 56 L1066 46 L1080 54 Z" fill="#fbf8f2" opacity=".9"/>
     <path d="M0 140 V118 C200 100 400 124 600 110 S1000 104 1200 118 V140Z" fill="var(--bg)"/>
   </svg>
+</section>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="g-rice" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf6"/><stop offset="1" stop-color="#e6dcc6"/></linearGradient>
+    <linearGradient id="g-salmon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb08a"/><stop offset=".55" stop-color="#ff7c4d"/><stop offset="1" stop-color="#e85a2c"/></linearGradient>
+    <linearGradient id="g-tuna" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e5455a"/><stop offset=".6" stop-color="#c3223a"/><stop offset="1" stop-color="#8f1428"/></linearGradient>
+    <linearGradient id="g-eel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8642c"/><stop offset="1" stop-color="#5e2f10"/></linearGradient>
+    <linearGradient id="g-egg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe27a"/><stop offset="1" stop-color="#f2b929"/></linearGradient>
+    <linearGradient id="g-plate" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4efe4"/><stop offset="1" stop-color="#cfc6b2"/></linearGradient>
+    <g id="s-rice"><rect x="22" y="34" width="76" height="28" rx="14" fill="url(#g-rice)"/><g fill="#d9ceb4"><circle cx="34" cy="52" r="1.6"/><circle cx="48" cy="57" r="1.4"/><circle cx="66" cy="55" r="1.6"/><circle cx="82" cy="51" r="1.4"/><circle cx="58" cy="48" r="1.2"/></g></g>
+    <symbol id="s-salmon" viewBox="0 0 120 70"><use href="#s-rice"/><path d="M12 40 C18 16 98 12 110 33 C106 47 24 53 12 40Z" fill="url(#g-salmon)"/><g stroke="#fff3ea" stroke-width="3" stroke-linecap="round" fill="none" opacity=".75"><path d="M28 24 l10 18"/><path d="M46 19 l11 22"/><path d="M64 18 l11 22"/><path d="M82 20 l10 19"/><path d="M98 26 l6 11"/></g><ellipse class="glint" cx="58" cy="24" rx="26" ry="3.5" fill="#fff"/></symbol>
+    <symbol id="s-tuna" viewBox="0 0 120 70"><use href="#s-rice"/><path d="M12 40 C18 17 98 13 110 33 C106 47 24 53 12 40Z" fill="url(#g-tuna)"/><g stroke="#f07a88" stroke-width="2" fill="none" opacity=".5"><path d="M34 22 q8 10 4 22"/><path d="M60 18 q8 12 4 26"/><path d="M84 21 q7 10 4 20"/></g><ellipse class="glint" cx="60" cy="24" rx="24" ry="3.5" fill="#fff"/></symbol>
+    <symbol id="s-eel" viewBox="0 0 120 70"><use href="#s-rice"/><path d="M14 40 C18 22 98 18 108 34 C104 46 26 51 14 40Z" fill="url(#g-eel)"/><path d="M24 34 q36 -8 76 -2" stroke="#3b1b08" stroke-width="2" fill="none" opacity=".5"/><rect x="53" y="18" width="13" height="45" rx="2" fill="#18241c"/><g fill="#fbf3dc"><ellipse cx="34" cy="31" rx="1.8" ry="1"/><ellipse cx="42" cy="27" rx="1.8" ry="1"/><ellipse cx="80" cy="27" rx="1.8" ry="1"/><ellipse cx="90" cy="31" rx="1.8" ry="1"/></g><ellipse class="glint" cx="36" cy="27" rx="12" ry="2.5" fill="#fff"/><ellipse class="glint" cx="86" cy="27" rx="12" ry="2.5" fill="#fff"/></symbol>
+    <symbol id="s-shrimp" viewBox="0 0 120 70"><use href="#s-rice"/><path d="M16 40 C22 22 92 18 104 34 C100 46 28 51 16 40Z" fill="#fff4ec"/><g fill="#ff8a5c"><path d="M26 30 C30 24 40 22 44 23 C42 32 32 38 26 30Z"/><path d="M46 23 C54 19 62 19 66 20 C64 30 54 35 46 23Z"/><path d="M68 20 C76 19 84 21 88 24 C84 33 74 34 68 20Z"/></g><path d="M100 32 l16 -14 l-2 14 l6 8 l-16 2Z" fill="#e8492a"/><ellipse class="glint" cx="56" cy="24" rx="22" ry="3" fill="#fff"/></symbol>
+    <symbol id="s-tamago" viewBox="0 0 120 70"><use href="#s-rice"/><rect x="16" y="16" width="88" height="24" rx="5" fill="url(#g-egg)"/><path d="M16 24 h88 M16 31 h88" stroke="#e0a218" stroke-width="1.5" opacity=".6"/><rect x="53" y="14" width="13" height="49" rx="2" fill="#18241c"/><ellipse class="glint" cx="34" cy="20" rx="12" ry="2.5" fill="#fff"/></symbol>
+    <symbol id="s-maki" viewBox="0 0 120 70"><g transform="translate(-14 0)"><rect x="34" y="26" width="52" height="36" rx="8" fill="#16201b"/><ellipse cx="60" cy="27" rx="26" ry="12" fill="#16201b"/><ellipse cx="60" cy="27" rx="21.5" ry="9.5" fill="url(#g-rice)"/><ellipse cx="56" cy="26" rx="7" ry="4.2" fill="url(#g-salmon)"/><ellipse cx="66" cy="28.5" rx="5" ry="3" fill="#8cc06a"/><ellipse cx="63" cy="23" rx="3.5" ry="2" fill="#bfe39a"/></g><g transform="translate(36 6)"><rect x="34" y="26" width="52" height="36" rx="8" fill="#16201b"/><ellipse cx="60" cy="27" rx="26" ry="12" fill="#16201b"/><ellipse cx="60" cy="27" rx="21.5" ry="9.5" fill="url(#g-rice)"/><ellipse cx="57" cy="27" rx="7" ry="4.2" fill="url(#g-tuna)"/><ellipse cx="67" cy="26" rx="4.5" ry="3" fill="#8cc06a"/></g></symbol>
+    <symbol id="s-dragon" viewBox="0 0 120 70"><rect x="14" y="30" width="92" height="32" rx="14" fill="url(#g-rice)"/><path d="M14 40 C30 18 90 16 106 38 C92 34 30 36 14 40Z" fill="#9cc56d"/><g fill="#7fae52"><path d="M28 32 q8 -10 16 -4"/><path d="M46 26 q8 -8 16 -2"/><path d="M64 25 q8 -6 16 0"/><path d="M82 28 q8 -4 14 4"/></g><path d="M20 38 C40 30 80 28 100 36" stroke="#5a2a0c" stroke-width="3" fill="none" stroke-linecap="round"/><g fill="#ff7a3d"><circle cx="30" cy="46" r="2.2"/><circle cx="40" cy="50" r="2.2"/><circle cx="56" cy="47" r="2.2"/><circle cx="70" cy="51" r="2.2"/><circle cx="86" cy="47" r="2.2"/><circle cx="94" cy="53" r="2"/><circle cx="48" cy="55" r="2"/></g><ellipse class="glint" cx="60" cy="26" rx="22" ry="2.5" fill="#fff"/></symbol>
+  </defs>
+</svg>
+<section class="belt" aria-label="Today on the sushi bar">
+  <div class="belt-head"><p>Fresh off the sushi bar</p><a href="#menu">Full menu →</a></div>
+  <div class="track"><div class="lane"><div class="plate"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#c9763f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-salmon" x="2" y="4" width="136" height="79"/></g></svg><span>Salmon nigiri</span></div><div class="plate"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#3b6e58"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-maki" x="2" y="4" width="136" height="79"/></g></svg><span>Maki rolls</span></div><div class="plate"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#cbbe8f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-tuna" x="2" y="4" width="136" height="79"/></g></svg><span>Tuna nigiri</span></div><div class="plate"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#793d21"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-dragon" x="2" y="4" width="136" height="79"/></g></svg><span>Dragon roll</span></div><div class="plate"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#3b6e58"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-shrimp" x="2" y="4" width="136" height="79"/></g></svg><span>Shrimp nigiri</span></div><div class="plate"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#c9763f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-eel" x="2" y="4" width="136" height="79"/></g></svg><span>Eel nigiri</span></div><div class="plate"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#cbbe8f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-tamago" x="2" y="4" width="136" height="79"/></g></svg><span>Tamago</span></div><div class="plate dup" aria-hidden="true"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#c9763f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-salmon" x="2" y="4" width="136" height="79"/></g></svg><span>Salmon nigiri</span></div><div class="plate dup" aria-hidden="true"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#3b6e58"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-maki" x="2" y="4" width="136" height="79"/></g></svg><span>Maki rolls</span></div><div class="plate dup" aria-hidden="true"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#cbbe8f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-tuna" x="2" y="4" width="136" height="79"/></g></svg><span>Tuna nigiri</span></div><div class="plate dup" aria-hidden="true"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#793d21"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-dragon" x="2" y="4" width="136" height="79"/></g></svg><span>Dragon roll</span></div><div class="plate dup" aria-hidden="true"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#3b6e58"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-shrimp" x="2" y="4" width="136" height="79"/></g></svg><span>Shrimp nigiri</span></div><div class="plate dup" aria-hidden="true"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#c9763f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-eel" x="2" y="4" width="136" height="79"/></g></svg><span>Eel nigiri</span></div><div class="plate dup" aria-hidden="true"><svg viewBox="0 0 140 104" aria-hidden="true"><ellipse cx="70" cy="86" rx="66" ry="15" fill="rgba(0,0,0,.45)"/><ellipse cx="70" cy="80" rx="64" ry="16" fill="#cbbe8f"/><ellipse cx="70" cy="78" rx="54" ry="12" fill="url(#g-plate)"/><g class="food"><use href="#s-tamago" x="2" y="4" width="136" height="79"/></g></svg><span>Tamago</span></div></div></div>
 </section>
 
 <section class="band" id="menu" aria-labelledby="menu-h">
@@ -233,12 +282,18 @@ const names=Object.keys(menu);
 tabs.innerHTML=names.map((n,i)=>`<button role="tab" id="tab-${i}" aria-selected="${i===0}">${esc(n)}</button>`).join('');
 const show=i=>{
   [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
-  items.innerHTML=menu[names[i]].map(([n,d,p,t])=>`<div class="item"><h3>${esc(n)}${t?`<span class="tag">${esc(t)}</span>`:''}</h3><span class="price">$${esc(p)}</span><p>${esc(d)}</p></div>`).join('');
+  items.innerHTML=menu[names[i]].map(([n,d,p,t],k)=>`<div class="item" style="--i:${k}"><h3>${esc(n)}${t?`<span class="tag">${esc(t)}</span>`:''}</h3><span class="price">$${esc(p)}</span><p>${esc(d)}</p></div>`).join('');
 };
 tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show([...tabs.children].indexOf(b))});
 tabs.addEventListener('keydown',e=>{const cur=[...tabs.children].findIndex(b=>b.getAttribute('aria-selected')==='true');
   if(e.key==='ArrowRight'||e.key==='ArrowLeft'){const n=(cur+(e.key==='ArrowRight'?1:-1)+names.length)%names.length;show(n);tabs.children[n].focus();tabs.children[n].scrollIntoView({block:'nearest',inline:'nearest'})}});
 show(0);
+
+// reveal sections as they scroll in
+document.documentElement.classList.add('js');
+const rv=document.querySelectorAll('.menuhead,.story .wrap > *,.visit .wrap > *,.belt-head');
+rv.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});rv.forEach(el=>io.observe(el))}else rv.forEach(el=>el.classList.add('in'));
 
 // hours: [day, open hour, close hour] (24h); null = closed
 const hours=[["Sunday",12,20],["Monday",null],["Tuesday",16,21],["Wednesday",16,21],["Thursday",16,21],["Friday",12,22],["Saturday",12,22]];
